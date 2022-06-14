@@ -11,8 +11,8 @@ data class Place(
     var phone:String,
     var address_name:String,
     var road_address_name:String,
-    var x:String,
-    var y:String,
+    var x:String,   //longitude
+    var y:String,   //latitude
     var place_url:String,
     var distance:String //내 좌표까지의 거리(단위 : meter) - x,y 파라미터를 준 경우만 응답
 )

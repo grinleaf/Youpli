@@ -24,6 +24,7 @@ import com.grinleaf.tpexample01.R
 import com.grinleaf.tpexample01.databinding.ActivityMainBinding
 import com.grinleaf.tpexample01.fragments.PlaceListFragment
 import com.grinleaf.tpexample01.fragments.PlaceMapFragment
+import com.grinleaf.tpexample01.model.KakaoSearchPlaceResponse
 import com.grinleaf.tpexample01.network.RetrofitApiService
 import com.grinleaf.tpexample01.network.RetrofitHelper
 import retrofit2.Call
@@ -33,7 +34,8 @@ import retrofit2.Retrofit
 
 class MainActivity : AppCompatActivity() {
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
-    
+
+    //* 멤버변수 만들기
     //1. 검색 장소 키워드
     var searchQuery:String= "화장실"   //앱 초기 검색어 - 내 주변 개방된 화장실
 
@@ -41,6 +43,9 @@ class MainActivity : AppCompatActivity() {
     var myLocation: Location? = null
     //[ Google Fused Location API 사용 : play-services-location ] --> Location API 객체들 사용 시 android.gms 용으로 import 해야함 주의~
     val providerClient: FusedLocationProviderClient by lazy { LocationServices.getFusedLocationProviderClient(this) }
+
+    //3. Kakao 검색 결과 응답 객체 : ListFragment, MapFragment 에서 해당 정보를 공통적으로 사용하므로, MainActivity 의 멤버로 만들어 두고 사용하기
+    var searchPlaceResponse: KakaoSearchPlaceResponse?= null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -150,18 +155,43 @@ class MainActivity : AppCompatActivity() {
 
         //Retrofit 을 이용하여 카카오 키워드 장소검색 API 파싱하기
         val retrofit: Retrofit = RetrofitHelper.getRetrofitInstance("https://dapi.kakao.com")
-        retrofit.create(RetrofitApiService::class.java).searchPlacesToString(searchQuery,myLocation?.latitude.toString(), myLocation?.longitude.toString())
-            .enqueue(object: Callback<String>{
-                override fun onResponse(call: Call<String>, response: Response<String>) {
-                    var s= response.body()
-                    AlertDialog.Builder(this@MainActivity).setMessage(s.toString()).create().show()
+        retrofit.create(RetrofitApiService::class.java).searchPlaces(searchQuery,myLocation?.longitude.toString(),myLocation?.latitude.toString())
+            .enqueue(object:Callback<KakaoSearchPlaceResponse>{
+                override fun onResponse(
+                    call: Call<KakaoSearchPlaceResponse>,
+                    response: Response<KakaoSearchPlaceResponse>
+                ) {
+                    searchPlaceResponse= response.body()
+                    //객체가 분석(파싱)되었는지부터 확인하기!
+                    //AlertDialog.Builder(this@MainActivity).setMessage(searchPlaceResponse?.documents!!.size.toString()).show()
+                    
+                    //무조건 검색이 완료되면 PlaceListFragment 부터 보여주기 : 기존에 있던 Fragment 를 제거하고 다시 새로 붙이기 (정보갱신) --> 요게 메모리 관리에 더 효율적임! (show-hide 보다 나을거양)
+                    supportFragmentManager.beginTransaction().replace(R.id.container_fragment,PlaceListFragment()).commit()
+                    //* 탭레이아웃과 프래그먼트가 연동되어있지 않으므로, 프래그먼트 교체와 동시에 탭이 변경되지는 않음!
+                    //* 탭 -o-> 프래그먼트 변경 / 프래그먼트 변경 시 -x-> 탭 변경 상태 이므로, 탭에도 변경사항을 설정해줘야함~
+                    //* 탭버튼의 위치를 "LIST" 탭으로 변경
+                    binding.layoutTab.getTabAt(0)?.select()     //0번째 탭이 선택된 상태로 설정
                 }
 
-                override fun onFailure(call: Call<String>, t: Throwable) {
+                override fun onFailure(call: Call<KakaoSearchPlaceResponse>, t: Throwable) {
                     Toast.makeText(this@MainActivity, "서버 오류가 있습니다.\n잠시 후 다시 시도해 주세요.", Toast.LENGTH_SHORT).show()
                 }
 
             })
+
+
+//        retrofit.create(RetrofitApiService::class.java).searchPlacesToString(searchQuery,myLocation?.latitude.toString(), myLocation?.longitude.toString())
+//            .enqueue(object: Callback<String>{
+//                override fun onResponse(call: Call<String>, response: Response<String>) {
+//                    var s= response.body()
+//                    AlertDialog.Builder(this@MainActivity).setMessage(s.toString()).create().show()
+//                }
+//
+//                override fun onFailure(call: Call<String>, t: Throwable) {
+//                    Toast.makeText(this@MainActivity, "서버 오류가 있습니다.\n잠시 후 다시 시도해 주세요.", Toast.LENGTH_SHORT).show()
+//                }
+//
+//            })
     }
 
     private fun setChoiceButtonsListener(){

@@ -17,11 +17,13 @@
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_email_sign_in.xml" value="0.25" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_place_url.xml" value="0.30885416666666665" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/activity_splash.xml" value="0.30885416666666665" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/choice_list.xml" value="0.1574074074074074" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/fragment_map_list.xml" value="0.30885416666666665" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/fragment_place_list.xml" value="0.25" />
+        <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/layout/recycler_item_list_fragment.xml" value="0.22" />
         <entry key="..\:/Android/Projects/TPExample01/app/src/main/res/menu/actionbar_main.xml" value="0.30885416666666665" />
       </map>
     </option>

@@ -3,14 +3,11 @@
     package="com.grinleaf.tpexample01">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- 전체 application 의 name 속성으로 카카오 SDK 사용을 위해 만든 GlobalApplication 클래스를 주자! -->
     <application
-
         android:name=".GlobalApplication"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TPExample01"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".activities.PlaceUrlActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.EmailSignInActivity"
             android:exported="false" />
@@ -39,20 +39,20 @@
         </activity>
         <activity
             android:name=".activities.MainActivity"
-            android:exported="true" />
-
-        <!-- https://developers.kakao.com/docs/latest/ko/kakaologin/android -->
+            android:exported="true" /> <!-- https://developers.kakao.com/docs/latest/ko/kakaologin/android -->
         <!-- Redirect URI 설정하기 : 카카오 로그인 기능 사용 시 리다이렉션을 통한 인가코드 받아야 함! -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <!-- Redirect URI: "kakao${NATIVE_APP_KEY}://oauth" -->
-                <data android:host="oauth"
+                <data
+                    android:host="oauth"
                     android:scheme="kakao83a761736b854fe5e13b7ba44d54f4af" />
             </intent-filter>
         </activity>

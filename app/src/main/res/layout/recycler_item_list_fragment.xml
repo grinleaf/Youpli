@@ -27,15 +27,16 @@
             android:layout_below="@id/tv_place_name"
             android:text="서울시 성동구 왕십리로 101"
             android:padding="4dp"/>
+
         <TextView
             android:id="@+id/tv_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100m"
-            android:textColor="@color/purple_500"
-            android:textStyle="bold"
             android:layout_alignParentRight="true"
-            android:padding="4dp"/>
+            android:padding="4dp"
+            android:text="100m"
+            android:textColor="@color/main_color_bolder"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 

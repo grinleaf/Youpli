@@ -151,7 +151,8 @@ class MainActivity : AppCompatActivity() {
 
     //카카오 키워드 장소검색 API 작업을 수행하는 기능 메소드
     private fun searchPlace(){
-        Toast.makeText(this, "$searchQuery : ${myLocation?.latitude},${myLocation?.longitude}", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this, "$searchQuery : ${myLocation?.latitude},${myLocation?.longitude}", Toast.LENGTH_SHORT).show()
+        binding.progressbar.visibility= View.VISIBLE
 
         //Retrofit 을 이용하여 카카오 키워드 장소검색 API 파싱하기
         val retrofit: Retrofit = RetrofitHelper.getRetrofitInstance("https://dapi.kakao.com")
@@ -162,6 +163,10 @@ class MainActivity : AppCompatActivity() {
                     response: Response<KakaoSearchPlaceResponse>
                 ) {
                     searchPlaceResponse= response.body()
+
+                    //내 위치 탐색이 끝났을 때 프로그레스바 숨기기
+                    binding.progressbar.visibility= View.GONE
+
                     //객체가 분석(파싱)되었는지부터 확인하기!
                     //AlertDialog.Builder(this@MainActivity).setMessage(searchPlaceResponse?.documents!!.size.toString()).show()
                     

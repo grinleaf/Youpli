@@ -10,14 +10,14 @@
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="blahblah"
-        android:textStyle="bold"
-        android:textSize="40sp"
-        android:textColor="@color/main_color"
-        android:padding="16dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:fontFamily="@font/cookierunblack"/>
+        android:fontFamily="@font/cookierunblack"
+        android:padding="16dp"
+        android:text="Youpli"
+        android:textColor="@color/main_color"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv_go"

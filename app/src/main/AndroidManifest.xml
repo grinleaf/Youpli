@@ -9,9 +9,9 @@
     <application
         android:name=".GlobalApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_logo_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TPExample01"
         android:usesCleartextTraffic="true">
@@ -56,6 +56,9 @@
                     android:scheme="kakao83a761736b854fe5e13b7ba44d54f4af" />
             </intent-filter>
         </activity>
+
+        <!-- 카카오 지도 네이티브 앱 키 등록 -->
+        <meta-data android:name="com.kakao.sdk.AppKey" android:value="83a761736b854fe5e13b7ba44d54f4af"/>
     </application>
 
 </manifest>

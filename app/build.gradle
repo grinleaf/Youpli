@@ -11,7 +11,7 @@ android {
         applicationId "com.grinleaf.tpexample01"
         minSdk 23
         targetSdk 32
-        versionCode 1
+        versionCode 2
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -68,6 +68,9 @@ dependencies {
 
     //Google Fused Location API library
     implementation 'com.google.android.gms:play-services-location:20.0.0'
+
+    //Kakao Map SDK jar library
+    implementation files('libs/libDaumMapAndroid.jar')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

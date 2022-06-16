@@ -120,7 +120,7 @@ class LoginActivity : AppCompatActivity() {
                 var id:String= account.id.toString()
                 var email:String= account.email ?: ""   //가져온 email 값이 null 값이면 email=""
 
-                Toast.makeText(this@LoginActivity, "$email", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@LoginActivity, "$email", Toast.LENGTH_SHORT).show()
                 G.userAccount= UserAccount(id, email)
 
                 //작업이 끝났으니 Main 화면으로 이동~
@@ -154,7 +154,7 @@ class LoginActivity : AppCompatActivity() {
 
                 //사용자 정보를 가져올 REST API 의 접속토큰(Access Token) 받아오기
                 val accessToken:String? = NaverIdLoginSDK.getAccessToken()
-                Toast.makeText(this@LoginActivity, "token : $accessToken", Toast.LENGTH_SHORT).show()
+//                Toast.makeText(this@LoginActivity, "token : $accessToken", Toast.LENGTH_SHORT).show()
 
                 //06.09 - 사용자 정보 가져오는 네트워크 작업 수행(Retrofit library 이용)
                 val retrofit= RetrofitHelper.getRetrofitInstance("https://openapi.naver.com/")

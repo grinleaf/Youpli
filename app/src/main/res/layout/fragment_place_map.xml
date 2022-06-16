@@ -3,10 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="MAP"
-        android:layout_centerInParent="true"/>
+    <!-- 카카오 MapView 가 놓여질 컨테이너용 뷰 그룹   -->
+    <RelativeLayout
+        android:id="@+id/container_mapview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

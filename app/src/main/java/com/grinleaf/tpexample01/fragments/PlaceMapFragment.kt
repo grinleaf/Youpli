@@ -107,9 +107,9 @@ class PlaceMapFragment:Fragment() {
             val place: Place= p1?.userObject as Place   //userObject 타입이 Any 이므로, 형변환해주기
             
             //말풍선 클릭 시 말풍선에 적힌 장소의 상세정보 화면으로 전환하기
-            val intent= Intent(context, PlaceUrlActivity::class.java)
-            intent.putExtra("place_url", place.place_url)
-            startActivity(intent)
+//            val intent= Intent(context, PlaceUrlActivity::class.java)
+//            intent.putExtra("place_url", place.place_url)
+//            startActivity(intent)
         }
 
         override fun onDraggablePOIItemMoved(p0: MapView?, p1: MapPOIItem?, p2: MapPoint?) {

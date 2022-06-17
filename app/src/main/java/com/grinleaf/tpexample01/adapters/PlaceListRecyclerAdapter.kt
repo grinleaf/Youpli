@@ -28,11 +28,11 @@ class PlaceListRecyclerAdapter(val context:Context, var documents:MutableList<Pl
         holder.binding.tvDistance.text= place.distance+"m"
 
         //각각의 장소 아이템뷰 클릭 시 장소에 대한 상세정보 화면으로 이동
-        holder.itemView.setOnClickListener {
-            val intent:Intent= Intent(context, PlaceUrlActivity::class.java)
-            intent.putExtra("place_url",place.place_url)
-            context.startActivity(intent)
-        }
+//        holder.itemView.setOnClickListener {
+//            val intent:Intent= Intent(context, PlaceUrlActivity::class.java)
+//            intent.putExtra("place_url",place.place_url)
+//            context.startActivity(intent)
+//        }
     }
 
     override fun getItemCount(): Int = documents.size
